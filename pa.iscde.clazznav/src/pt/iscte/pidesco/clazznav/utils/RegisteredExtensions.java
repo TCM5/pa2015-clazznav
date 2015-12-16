@@ -38,7 +38,7 @@ public class RegisteredExtensions {
 
 							((Event) object ).backNavigation(null,null);
 							((Event) object ).forwardNavigation(null,null);
-							
+
 							System.out.println("RUNNING...");
 						}						
 
@@ -53,7 +53,11 @@ public class RegisteredExtensions {
 			//TODO
 		}
 	}
-	
+
+	private void checkContributedExtensions(){
+		//TODO
+	}
+
 	public static void main(String[] args) {
 		new RegisteredExtensions().execute(Platform.getExtensionRegistry());
 	}

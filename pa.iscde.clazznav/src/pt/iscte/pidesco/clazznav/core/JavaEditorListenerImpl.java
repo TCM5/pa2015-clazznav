@@ -21,23 +21,10 @@ public class JavaEditorListenerImpl extends JavaEditorListener.Adapter{
 
 				HistoryEntry entry = new HistoryEntry(file);
 				historyManager.addEntry( entry );
+
+				System.out.println("open");
 			}
 		}
-
-		//		if(!AbstractNavigator.files.isEmpty()){
-		//			if(!(AbstractNavigator.files.get(AbstractNavigator.files.size() - 1 ).getName().equals(file.getName()))){
-		//				AbstractNavigator.files.add(file);
-		//				GraphicNavigator.getInstance().refresh();
-		//				System.out.println(AbstractNavigator.files.get(AbstractNavigator.files.size()-1).getName());
-		//			}
-		//		}
-		//		else {
-		//			AbstractNavigator.files.add(file);
-		////			GraphicNavigator.getInstance().refresh();
-		//			System.out.println(AbstractNavigator.files.get(AbstractNavigator.files.size()-1).getName());
-		//		}
-
-		System.out.println("open");
 	}
 
 	/**
@@ -52,10 +39,12 @@ public class JavaEditorListenerImpl extends JavaEditorListener.Adapter{
 
 				HistoryEntry entry = new HistoryEntry(file);
 				historyManager.addEntry( entry );
+				System.out.println("CLOSED");
+			
 			}
 		}
 
-		System.out.println("CLOSED");
+		
 	}
 
 
@@ -71,9 +60,10 @@ public class JavaEditorListenerImpl extends JavaEditorListener.Adapter{
 
 			HistoryEntry entry = new HistoryEntry(file , offset);
 			historyManager.addEntry( entry );
+
+			System.out.println("CHANGED");
 		}
 
-		System.out.println("CHANGED");
 	}
 
 

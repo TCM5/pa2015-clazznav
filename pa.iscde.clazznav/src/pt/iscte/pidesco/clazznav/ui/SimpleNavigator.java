@@ -1,5 +1,7 @@
 package pt.iscte.pidesco.clazznav.ui;
 
+import java.io.InputStream;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
@@ -17,7 +19,7 @@ public class SimpleNavigator extends AbstractNavigator implements NavigatorInter
 	private Button previousButton;
 	private Button afterButton;
 	private Button graphicModeButton;
-	
+
 	private HistoryManager historyManager = HistoryManager.getInstance();
 
 	private SimpleNavigator(Composite composite){
@@ -45,8 +47,14 @@ public class SimpleNavigator extends AbstractNavigator implements NavigatorInter
 		previousButton = new Button(getComposite(),  SWT.ARROW | SWT.LEFT);
 
 		graphicModeButton = new Button(getComposite(), SWT.ARROW_UP);
-		Image image = new Image(getComposite().getDisplay(), this.getClass().getResourceAsStream("/images/navigator_icon2.png"));
-		graphicModeButton.setImage(image);
+
+
+		InputStream input = this.getClass().getResourceAsStream("/images/navigator_icon2.png");
+
+		if( input != null ){
+			Image image = new Image(getComposite().getDisplay() , input);
+			graphicModeButton.setImage(image);
+		}
 
 		afterButton = new Button(getComposite(),  SWT.ARROW | SWT.RIGHT);
 

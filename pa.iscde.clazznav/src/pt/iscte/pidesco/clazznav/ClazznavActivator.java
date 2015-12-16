@@ -10,29 +10,49 @@ import pt.iscte.pidesco.javaeditor.service.JavaEditorServices;
 /**
  * 
  * @author tiagocms
- *
+ * 
  */
 public class ClazznavActivator implements BundleActivator {
 
+	/**
+	 * 
+	 */
 	private static ClazznavActivator instance;
 
+	/**
+	 * 
+	 */
 	private ServiceLogger log = new ServiceLogger();
 
+	/**
+	 * 
+	 */
 	private static BundleContext context;
 
-	public  ServiceReference<JavaEditorServices> javaEditorReference;
+	/**
+	 * 
+	 */
+	public ServiceReference<JavaEditorServices> javaEditorReference;
+	
+	/**
+	 * 
+	 */
 	public JavaEditorServices javaEditorService;
 
-//	public static ServiceReference<ProjectBrowserServices> projectBrowserReference;
-//	public static ProjectBrowserServices projectBrowserService;
-
+	/**
+	 * 
+	 */
 	public static JavaEditorListenerImpl listener;
 
-
+	/**
+	 * 
+	 * @return
+	 */
 	public static ClazznavActivator getInstance(){
 		return instance == null ? new ClazznavActivator() : instance;
 	}
 
+	
 	/*
 	 * (non-Javadoc)
 	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
@@ -42,17 +62,10 @@ public class ClazznavActivator implements BundleActivator {
 
 		log.log(0, "Starting bundle" );
 
-		//Chamada a serviço JavaEditor
 		javaEditorReference = bundleContext.getServiceReference( JavaEditorServices.class );
 		log.log(javaEditorReference, 0, "Starting...");
 		javaEditorService = bundleContext.getService( javaEditorReference );
 
-		//Chamada a serviço ProjectBrowser
-//		projectBrowserReference = bundleContext.getServiceReference( ProjectBrowserServices.class );
-//		log.log(projectBrowserReference, 0, "Starting...");
-//		projectBrowserService = bundleContext.getService( projectBrowserReference );
-
-		//
 		listener = new JavaEditorListenerImpl();
 		javaEditorService.addListener(listener);
 	}
@@ -64,12 +77,11 @@ public class ClazznavActivator implements BundleActivator {
 	public void stop(BundleContext bundleContext) throws Exception {
 		ClazznavActivator.context = null;
 		bundleContext.ungetService(javaEditorReference);
-//		bundleContext.ungetService();
 	}
 
 	/**
 	 * 
-	 * @return
+	 * @return The context of the bundle
 	 */
 	static BundleContext getContext() {
 		return context;

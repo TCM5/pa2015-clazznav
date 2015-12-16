@@ -14,13 +14,6 @@ public class ServiceLogger implements Logger {
 	 */
 	private static Logger instance = null;
 
-	@Override
-	public void log(int level, String message) {
-
-	}
-
-	@Override
-	public void log(int level, String message, Throwable exception) {}
 
 	@Override
 	public void log(ServiceReference<?> sr, int level, String message) {
@@ -42,6 +35,13 @@ public class ServiceLogger implements Logger {
 		System.out.println("Service: " + context + " (" + level + ") - Status: " + message + " - Error: " + exception);
 	}
 
+	@Override
+	public void log(int level, String message) {}
+	
+	@Override
+	public void log(int level, String message, Throwable exception) {}
+
+	
 	@Override
 	public boolean isLoggable(int level) {
 		return false;
