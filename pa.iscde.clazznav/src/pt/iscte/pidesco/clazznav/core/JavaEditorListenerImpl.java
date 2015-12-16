@@ -2,16 +2,11 @@ package pt.iscte.pidesco.clazznav.core;
 
 import java.io.File;
 
-import pt.iscte.pidesco.clazznav.ui.AbstractNavigator;
-import pt.iscte.pidesco.clazznav.ui.GraphicNavigator;
 import pt.iscte.pidesco.javaeditor.service.JavaEditorListener;
-import pt.iscte.pidesco.javaeditor.service.JavaEditorServices;
 
 public class JavaEditorListenerImpl extends JavaEditorListener.Adapter{
 
 	private HistoryManager historyManager = HistoryManager.getInstance();
-
-
 
 	/**
 	 * 
@@ -22,10 +17,7 @@ public class JavaEditorListenerImpl extends JavaEditorListener.Adapter{
 
 		if( historyManager.navigatedFiles != null ){
 			if (historyManager.isAdding){
-				historyManager.navigatedFiles.add(file);
-				historyManager.currentFilePosition++;
-				System.out.println("Added file " + file + " to the navigation history.");
-				System.out.println("Numero de ficheiros no historico: " + historyManager.navigatedFiles.size() + " - Ficheiro actual: " + historyManager.currentFilePosition);
+				historyManager.addEntry(file);
 			}
 		}
 
@@ -50,12 +42,10 @@ public class JavaEditorListenerImpl extends JavaEditorListener.Adapter{
 	@Override
 	public void fileClosed(File file) {
 		super.fileClosed(file);
-		System.out.println("ENTREI");
+
 		if( historyManager.navigatedFiles != null ){
 			if (historyManager.isAdding){
-				historyManager.navigatedFiles.add(file);
-				historyManager.currentFilePosition++;
-				System.out.println("Added file " + file + " to the navigation history.");
+				historyManager.addEntry(file);
 			}
 		}
 	}
@@ -69,20 +59,11 @@ public class JavaEditorListenerImpl extends JavaEditorListener.Adapter{
 		super.selectionChanged(file, text, offset, length);
 
 		if( historyManager.navigatedFiles.isEmpty() ){
-
-			historyManager.navigatedFiles.add(file);
-			historyManager.currentFilePosition++;
-			System.out.println("Added file " + file + " to the navigation history.");
-			System.out.println("Numero de ficheiros no historico: " + historyManager.navigatedFiles.size() + " - Ficheiro actual: " + historyManager.currentFilePosition);
+			historyManager.addEntry(file);
 		}
 		else {
 			System.out.println("xx");
 		}
 	}
-
-
-
-
-
 
 }

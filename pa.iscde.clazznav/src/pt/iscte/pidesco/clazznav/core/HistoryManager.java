@@ -19,6 +19,10 @@ public class HistoryManager {
 	 * 
 	 */
 	private JavaEditorServices javaEditorServices = ClazznavActivator.getInstance().javaEditorService;
+	
+	/**
+	 * 
+	 */
 	private ServiceReference<JavaEditorServices> javaEditorReference = ClazznavActivator.getInstance().javaEditorReference;
 
 
@@ -27,7 +31,14 @@ public class HistoryManager {
 	 */
 	public ArrayList<File> navigatedFiles = new ArrayList<>();
 
+	/**
+	 * 
+	 */
 	public int currentFilePosition = -1;
+	
+	/**
+	 * 
+	 */
 	private static File currentFile;
 
 
@@ -41,6 +52,8 @@ public class HistoryManager {
 	}
 
 	/**
+	 * Call the service of JavaEditor to open the previous entry of the current one. 
+	 * TODO
 	 * 
 	 */
 	public void goBack(){
@@ -55,10 +68,11 @@ public class HistoryManager {
 	}
 
 
-	/**
+	/** 
+	 * TODO
 	 * 
 	 */
-	public void goAfter(){
+	public void goForward(){
 
 		if( navigatedFiles.size() > 1 && currentFilePosition <= navigatedFiles.size() - 2 ){
 
@@ -79,5 +93,17 @@ public class HistoryManager {
 		javaEditorServices.openFile(file);
 
 		isAdding = true;
+	}
+
+	/**
+	 * This method is responsible to add an entry to the list of historic that stores all the steps navigated <p>
+	 * It also updates the current file ( .java class for example ) consulted in editor.
+	 * @param file
+	 */
+	public void addEntry(File file) {
+		navigatedFiles.add(file);
+		currentFilePosition++;		
+		System.out.println("Added file " + file + " to the navigation history.");
+		System.out.println("Numero de ficheiros no historico: " + navigatedFiles.size() + " - Ficheiro actual: " + currentFilePosition);
 	}
 }

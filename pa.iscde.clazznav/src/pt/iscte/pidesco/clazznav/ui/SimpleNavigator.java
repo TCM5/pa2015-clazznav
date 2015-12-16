@@ -100,7 +100,7 @@ public class SimpleNavigator extends AbstractNavigator implements NavigatorInter
 
 			@Override
 			public void handleEvent(Event event) {
-				historyManager.goAfter();
+				historyManager.goForward();
 			}
 		});
 	}
