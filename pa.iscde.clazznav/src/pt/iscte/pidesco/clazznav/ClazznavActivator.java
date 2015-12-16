@@ -5,10 +5,8 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
 import pt.iscte.pidesco.clazznav.core.JavaEditorListenerImpl;
-import pt.iscte.pidesco.clazznav.utils.Logger;
+import pt.iscte.pidesco.clazznav.utils.ServiceLogger;
 import pt.iscte.pidesco.javaeditor.service.JavaEditorServices;
-//import pt.iscte.pidesco.projectbrowser.service.ProjectBrowserServices;
-import pt.iscte.pidesco.projectbrowser.service.ProjectBrowserServices;
 /**
  * 
  * @author tiagocms
@@ -18,7 +16,7 @@ public class ClazznavActivator implements BundleActivator {
 
 	private static ClazznavActivator instance;
 
-	private Logger log = new Logger();
+	private ServiceLogger log = new ServiceLogger();
 
 	private static BundleContext context;
 
