@@ -21,15 +21,9 @@ public class HistoryManager {
 	private JavaEditorServices javaEditorServices = ClazznavActivator.getInstance().javaEditorService;
 	
 	/**
-	 * 
-	 */
-	private ServiceReference<JavaEditorServices> javaEditorReference = ClazznavActivator.getInstance().javaEditorReference;
-
-
-	/**
 	 * List of files that have been consulted/opened
 	 */
-	public ArrayList<File> navigatedFiles = new ArrayList<>();
+	public ArrayList<HistoryEntry> navigatedFiles = new ArrayList<>();
 
 	/**
 	 * 
@@ -48,6 +42,7 @@ public class HistoryManager {
 	private HistoryManager(){}
 
 	public static HistoryManager getInstance(){
+		
 		return instance == null ? instance = new HistoryManager() : instance;
 	}
 
@@ -57,12 +52,15 @@ public class HistoryManager {
 	 * 
 	 */
 	public void goBack(){
-
 		if( navigatedFiles.size() > 1 && currentFilePosition > 0 ){
 
-			currentFile = navigatedFiles.get( --currentFilePosition ); 
-			currentFilePosition = navigatedFiles.indexOf( currentFile );
+			HistoryEntry a = navigatedFiles.get( --currentFilePosition ); 
+			currentFilePosition = navigatedFiles.indexOf( a );
 			openCurrentFile( currentFilePosition );
+			
+//			currentFile = navigatedFiles.get( --currentFilePosition ).getFile(); 
+//			currentFilePosition = navigatedFiles.indexOf( currentFile );
+//			openCurrentFile( currentFilePosition );
 			System.out.println("Numero de ficheiros no historico: " + navigatedFiles.size() + " - Ficheiro actual: " + currentFilePosition);
 		}
 	}
@@ -76,7 +74,7 @@ public class HistoryManager {
 
 		if( navigatedFiles.size() > 1 && currentFilePosition <= navigatedFiles.size() - 2 ){
 
-			currentFile = navigatedFiles.get( ++currentFilePosition ) ; 
+			currentFile = navigatedFiles.get( ++currentFilePosition ).getFile() ; 
 //			currentFilePosition = navigatedFiles.indexOf( currentFile ); //bug??
 			openCurrentFile( currentFilePosition );
 			System.out.println("Numero de ficheiros no historico: " + navigatedFiles.size() + " - Ficheiro actual: " + currentFilePosition);
@@ -89,8 +87,11 @@ public class HistoryManager {
 	private void openCurrentFile(int index){
 		isAdding = false;
 
-		File file = navigatedFiles.get(index);
-		javaEditorServices.openFile(file);
+		
+		HistoryEntry entry = navigatedFiles.get(index);
+		
+		javaEditorServices.openFile( entry.getFile() );
+		javaEditorServices.selectText( entry.getFile(), entry.getInFilePosition(), 0);
 
 		isAdding = true;
 	}
@@ -100,10 +101,19 @@ public class HistoryManager {
 	 * It also updates the current file ( .java class for example ) consulted in editor.
 	 * @param file
 	 */
-	public void addEntry(File file) {
-		navigatedFiles.add(file);
+	public void addEntry(HistoryEntry entry) {
+		navigatedFiles.add( entry );
 		currentFilePosition++;		
-		System.out.println("Added file " + file + " to the navigation history.");
-		System.out.println("Numero de ficheiros no historico: " + navigatedFiles.size() + " - Ficheiro actual: " + currentFilePosition);
+//		System.out.println("Added file " + entry.getFile() + " to the navigation history.");
+//		System.out.println("Numero de ficheiros no historico: " + navigatedFiles.size() + " - Ficheiro actual: " + currentFilePosition);
 	}
+	
+	/**
+	 * 
+	 */
+	 private void temp(File file){
+		 
+		 
+		 
+	 }
 }

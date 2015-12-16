@@ -3,6 +3,7 @@ package pt.iscte.pidesco.clazznav.core;
 import java.io.File;
 
 import pt.iscte.pidesco.javaeditor.service.JavaEditorListener;
+import pt.iscte.pidesco.javaeditor.service.JavaEditorServices;
 
 public class JavaEditorListenerImpl extends JavaEditorListener.Adapter{
 
@@ -17,7 +18,9 @@ public class JavaEditorListenerImpl extends JavaEditorListener.Adapter{
 
 		if( historyManager.navigatedFiles != null ){
 			if (historyManager.isAdding){
-				historyManager.addEntry(file);
+
+				HistoryEntry entry = new HistoryEntry(file);
+				historyManager.addEntry( entry );
 			}
 		}
 
@@ -34,6 +37,7 @@ public class JavaEditorListenerImpl extends JavaEditorListener.Adapter{
 		//			System.out.println(AbstractNavigator.files.get(AbstractNavigator.files.size()-1).getName());
 		//		}
 
+		System.out.println("open");
 	}
 
 	/**
@@ -45,9 +49,13 @@ public class JavaEditorListenerImpl extends JavaEditorListener.Adapter{
 
 		if( historyManager.navigatedFiles != null ){
 			if (historyManager.isAdding){
-				historyManager.addEntry(file);
+
+				HistoryEntry entry = new HistoryEntry(file);
+				historyManager.addEntry( entry );
 			}
 		}
+
+		System.out.println("CLOSED");
 	}
 
 
@@ -58,12 +66,15 @@ public class JavaEditorListenerImpl extends JavaEditorListener.Adapter{
 	public void selectionChanged(File file, String text, int offset, int length) {
 		super.selectionChanged(file, text, offset, length);
 
+
 		if( historyManager.navigatedFiles.isEmpty() ){
-			historyManager.addEntry(file);
+
+			HistoryEntry entry = new HistoryEntry(file , offset);
+			historyManager.addEntry( entry );
 		}
-		else {
-			System.out.println("xx");
-		}
+
+		System.out.println("CHANGED");
 	}
+
 
 }

@@ -2,8 +2,16 @@ package pt.iscte.pidesco.clazznav.core;
 
 import java.io.File;
 
+import pt.iscte.pidesco.clazznav.ClazznavActivator;
+import pt.iscte.pidesco.javaeditor.service.JavaEditorServices;
+
 public class HistoryEntry {
 	
+	
+	/**
+	 * 
+	 */
+	private JavaEditorServices javaEditorServices = ClazznavActivator.getInstance().javaEditorService;
 	
 	/**
 	 * 
@@ -20,10 +28,16 @@ public class HistoryEntry {
 	 * @param file
 	 * @param inFilePositionin
 	 */
-	public HistoryEntry(File file, int inFilePosition){
+	public HistoryEntry(File file){
 		this.file = file;
-		this.inFilePosition = inFilePosition > 1 ? inFilePosition : 0;
+//		this.inFilePosition = javaEditorServices.getCursorPosition();
 	}
+	
+	public HistoryEntry(File file, int inFilePosition ){
+		this.file = file;
+		this.inFilePosition = inFilePosition;
+	}
+	
 	
 	/**
 	 * 
@@ -41,4 +55,6 @@ public class HistoryEntry {
 		return inFilePosition;
 	}
 
+	
+	
 }
