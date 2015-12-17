@@ -30,7 +30,6 @@ public class HistoryEntry {
 	 */
 	public HistoryEntry(File file){
 		this.file = file;
-//		this.inFilePosition = javaEditorServices.getCursorPosition();
 	}
 	
 	public HistoryEntry(File file, int inFilePosition ){

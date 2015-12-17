@@ -108,12 +108,5 @@ public class HistoryManager {
 //		System.out.println("Numero de ficheiros no historico: " + navigatedFiles.size() + " - Ficheiro actual: " + currentFilePosition);
 	}
 	
-	/**
-	 * 
-	 */
-	 private void temp(File file){
-		 
-		 
-		 
-	 }
+
 }
