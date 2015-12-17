@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension-point id="pt.iscte.pidesco.clazznav.event" name="Event" schema="schema/pt.iscte.pidesco.clazznav.event.exsd"/>
+   <extension-point id="event" name="Event" schema="schema/pt.iscte.pidesco.clazznav.event.exsd"/>
    <extension
          id="clazznavViewID"
          name="ClazzNav"

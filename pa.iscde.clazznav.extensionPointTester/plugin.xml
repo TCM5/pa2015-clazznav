@@ -2,10 +2,9 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="pt.iscte.pidesco.clazznav.event">
-      <client
-            class="eventTester">
-      </client>
+         id="test"
+         name="testa"
+         point="pa.iscde.clazznav.event">
    </extension>
 
 </plugin>

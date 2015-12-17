@@ -8,7 +8,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.e4.core.di.annotations.Execute;
 
 import pt.iscte.pidesco.clazznav.Properties;
-import pt.iscte.pidesco.clazznav.extensibility.Event;
+import pt.iscte.pidesco.clazznav.extensibility.IEvent;
 
 /**
  * 
@@ -30,14 +30,14 @@ public class RegisteredExtensions {
 
 				final Object object = element.createExecutableExtension("class");
 
-				if (object != null && object instanceof Event ) {
+				if (object != null && object instanceof IEvent ) {
 
 					new ISafeRunnable() {						
 						@Override
 						public void run() throws Exception {
 
-							((Event) object ).backNavigation(null,null);
-							((Event) object ).forwardNavigation(null,null);
+							((IEvent) object ).backNavigation(null,null);
+							((IEvent) object ).forwardNavigation(null,null);
 
 							System.out.println("RUNNING...");
 						}						
