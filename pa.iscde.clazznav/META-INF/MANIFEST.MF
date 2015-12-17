@@ -17,4 +17,5 @@ Bundle-ActivationPolicy: lazy
 Import-Package: pt.iscte.pidesco.javaeditor.internal;resolution:=optional,
  pt.iscte.pidesco.javaeditor.service,
  pt.iscte.pidesco.projectbrowser.service
-Export-Package: pt.iscte.pidesco.clazznav.extensibility;version="1.0.0"
+Export-Package: pt.iscte.pidesco.clazznav.core,
+ pt.iscte.pidesco.clazznav.extensibility;version="1.0.0"

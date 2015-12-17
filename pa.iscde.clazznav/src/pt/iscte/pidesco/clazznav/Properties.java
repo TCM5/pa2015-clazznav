@@ -19,7 +19,7 @@ public class Properties {
 	private boolean DEBUG_MODE = false;
 	
 	//Extension points
-	public final String IEVENT_POINT_ID = "pt.iscte.pidesco.clazznav.event";
+	public final String IEVENT_POINT_ID = "pa.iscde.clazznav.event";
 
 
 }

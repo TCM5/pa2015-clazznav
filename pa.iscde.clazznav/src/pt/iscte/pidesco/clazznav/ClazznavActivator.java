@@ -4,7 +4,9 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
+import pt.iscte.pidesco.clazznav.core.ExtensionManager;
 import pt.iscte.pidesco.clazznav.core.JavaEditorListenerImpl;
+import pt.iscte.pidesco.clazznav.utils.RegisteredExtensions;
 import pt.iscte.pidesco.clazznav.utils.ServiceLogger;
 import pt.iscte.pidesco.javaeditor.service.JavaEditorServices;
 /**
@@ -68,6 +70,9 @@ public class ClazznavActivator implements BundleActivator {
 
 		listener = new JavaEditorListenerImpl();
 		javaEditorService.addListener(listener);
+		
+		ExtensionManager extManager = new ExtensionManager();
+		extManager.integrateExtensions();
 	}
 
 	/*
