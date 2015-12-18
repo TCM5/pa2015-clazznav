@@ -20,34 +20,30 @@ import pt.iscte.pidesco.clazznav.extensibility.IEvent;
 public class ExtensionManager {
 
 
-
+	/**
+	 * 
+	 */
 	public void integrateExtensions(){
-		IExtensionRegistry contributedExtensions = Platform.getExtensionRegistry();
+		IExtensionRegistry registredExtensions = Platform.getExtensionRegistry();
 
-		IExtensionPoint extensionPoints = contributedExtensions.getExtensionPoint(Properties.getInstance().IEVENT_POINT_ID);
+		IExtensionPoint extensionPoints = registredExtensions.getExtensionPoint(Properties.getInstance().IEVENT_POINT_ID);
 
-		IExtension[] extensions =  extensionPoints.getExtensions();
+		IExtension[] contributedExtensions =  extensionPoints.getExtensions();
 
-		for(IExtension e : extensions) {
+		for(IExtension contributedExtension : contributedExtensions) {
 
-			IConfigurationElement[] confElements = e.getConfigurationElements();
+			IConfigurationElement[] configElements = contributedExtension.getConfigurationElements();
 
-			for(IConfigurationElement c : confElements) {
-				System.out.println(c.getDeclaringExtension().getContributor());
-				for(int i = 0 ; i < c.getAttributeNames().length; i++)
-					System.out.println(c.getAttributeNames()[i]);
-				String id = c.getAttribute("id");
-				String name = c.getAttribute("name");
-
-				System.out.println(id + " " + name);
-
+			for(IConfigurationElement configElement : configElements) {
+				
+				checkContributedExtensions( configElement );
 
 				try {
-					Object o = c.createExecutableExtension("class");
+					Object object = configElement.createExecutableExtension("class");
 
-
-					if ( o instanceof IEvent ) {
-						System.out.println("OHHHHHH");
+					if ( object instanceof IEvent ) {
+						//						( (IEvent) object ).backNavigation(from, to);
+						//						( (IEvent) object ).forwardNavigation(from, to);(from, to);
 					}
 
 				} catch (CoreException e1) {
@@ -58,7 +54,7 @@ public class ExtensionManager {
 	}
 
 
-	@SuppressWarnings("Not tested. Null point shold be throw")
+	@SuppressWarnings("Not tested. Null point should be throw")
 	@Execute
 	public void execute(IExtensionRegistry registry) {
 
@@ -97,8 +93,12 @@ public class ExtensionManager {
 	/**
 	 * 
 	 */
-	private void checkContributedExtensions(){
-		//TODO
+	private void checkContributedExtensions(IConfigurationElement configElement){
+
+		System.out.println("Extension contributer: " + configElement.getDeclaringExtension().getContributor());
+
+		for(int i = 0 ; i < configElement.getAttributeNames().length; i++)
+			System.out.println("Extension elements: " + configElement.getAttributeNames()[i]);
 	}
 
 

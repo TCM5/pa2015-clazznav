@@ -3,7 +3,7 @@
 <schema targetNamespace="pa.iscde.clazznav" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="pa.iscde.clazznav" id="event" name="Event"/>
+         <meta.schema plugin="pa.iscde.clazznav" id="event" name="Event exensions"/>
       </appinfo>
       <documentation>
          [Enter description of this extension point.]
@@ -17,9 +17,9 @@
          </appinfo>
       </annotation>
       <complexType>
-         <choice minOccurs="1" maxOccurs="unbounded">
-            <element ref="client" minOccurs="1" maxOccurs="2"/>
-         </choice>
+         <sequence>
+            <element ref="client"/>
+         </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
                <documentation>
@@ -49,13 +49,20 @@
 
    <element name="client">
       <complexType>
-         <attribute name="class" type="string">
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":pt.iscte.pidesco.clazznav.extensibility.Event"/>
+                  <meta.attribute kind="java" basedOn=":pt.iscte.pidesco.clazznav.extensibility.IEvent"/>
                </appinfo>
             </annotation>
          </attribute>

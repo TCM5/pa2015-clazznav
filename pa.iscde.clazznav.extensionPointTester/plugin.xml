@@ -2,9 +2,11 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         id="test"
-         name="testa"
          point="pa.iscde.clazznav.event">
+      <client
+            class="pa.iscde.clazznav.eventextensionpointtester.eventTester"
+            name="pa.iscde.clazznav.extensionPointTester.client1">
+      </client>
    </extension>
 
 </plugin>

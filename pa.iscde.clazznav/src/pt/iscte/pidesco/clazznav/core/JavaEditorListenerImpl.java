@@ -16,7 +16,7 @@ public class JavaEditorListenerImpl extends JavaEditorListener.Adapter{
 	@Override
 	public void fileOpened(File file) {
 
-		if( historyManager.navigatedFiles != null ){
+		if( historyManager.getNavigatedFiles() != null ){
 			if (historyManager.isAdding){
 
 				HistoryEntry entry = new HistoryEntry(file);
@@ -34,7 +34,7 @@ public class JavaEditorListenerImpl extends JavaEditorListener.Adapter{
 	public void fileClosed(File file) {
 		super.fileClosed(file);
 
-		if( historyManager.navigatedFiles != null ){
+		if( historyManager.getNavigatedFiles() != null ){
 			if (historyManager.isAdding){
 
 				HistoryEntry entry = new HistoryEntry(file);
@@ -56,7 +56,7 @@ public class JavaEditorListenerImpl extends JavaEditorListener.Adapter{
 		super.selectionChanged(file, text, offset, length);
 
 
-		if( historyManager.navigatedFiles.isEmpty() ){
+		if( historyManager.getNavigatedFiles().isEmpty() ){
 
 			HistoryEntry entry = new HistoryEntry(file , offset);
 			historyManager.addEntry( entry );

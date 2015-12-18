@@ -11,6 +11,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 
 import pt.iscte.pidesco.clazznav.core.HistoryManager;
+import pt.iscte.pidesco.clazznav.core.NavigationModes;
 
 public class SimpleNavigator extends AbstractNavigator implements NavigatorInterface {
 
@@ -85,7 +86,7 @@ public class SimpleNavigator extends AbstractNavigator implements NavigatorInter
 
 			@Override
 			public void handleEvent(Event event) {
-				historyManager.goBack();
+				historyManager.navigate( NavigationModes.BACK );;
 			}
 		});
 
@@ -108,7 +109,7 @@ public class SimpleNavigator extends AbstractNavigator implements NavigatorInter
 
 			@Override
 			public void handleEvent(Event event) {
-				historyManager.goForward();
+				historyManager.navigate( NavigationModes.FORWARD );;
 			}
 		});
 	}

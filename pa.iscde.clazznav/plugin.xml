@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension-point id="event" name="Event" schema="schema/pt.iscte.pidesco.clazznav.event.exsd"/>
+   <extension-point id="event" name="Event_ep" schema="schema/event.exsd"/>
    <extension
          id="clazznavViewID"
          name="ClazzNav"
@@ -10,6 +10,14 @@
             class="pt.iscte.pidesco.clazznav.ui.ClazznavView"
             icon="navigator_icon3.png">
       </view>
+   </extension>
+   <extension
+         point="pa.iscde.mcgraph.mcfilter">
+      <item></item>
+   </extension>
+   <extension
+         point="pa.iscde.outlaw.filter">
+      <item></item>
    </extension>
 
 </plugin>
