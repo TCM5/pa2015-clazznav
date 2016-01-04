@@ -82,6 +82,8 @@ public class HistoryManager {
 	 */
 	public void setNavigationMode(IHistoryNavigation historyNavigation){
 		this.historyNavigation = historyNavigation;
+		
+
 	}
 
 	/**
@@ -91,7 +93,10 @@ public class HistoryManager {
 	 */
 
 	public void navigate(NavigationModes modes){
-
+		//TEMP
+		historyNavigation = new DefaultHistoryNavigation();
+		
+		
 		switch( modes ){
 		case BACK:
 			historyNavigation.goBack();
@@ -138,7 +143,7 @@ public class HistoryManager {
 	/**
 	 * 
 	 */
-	private void openCurrentFile(int index){
+	public void openCurrentFile(int index){
 		isAdding = false;
 
 
