@@ -5,14 +5,13 @@ import java.io.File;
 import pt.iscte.pidesco.clazznav.ClazznavActivator;
 import pt.iscte.pidesco.javaeditor.service.JavaEditorServices;
 
+/**
+ * 
+ * @author santostc
+ *
+ */
 public class HistoryEntry {
-	
-	
-	/**
-	 * 
-	 */
-	private JavaEditorServices javaEditorServices = ClazznavActivator.getInstance().javaEditorService;
-	
+		
 	/**
 	 * 
 	 */
@@ -21,7 +20,7 @@ public class HistoryEntry {
 	/**
 	 * 
 	 */
-	private int inFilePosition;
+	private int cursorPosition;
 	
 	/**
 	 * 
@@ -32,26 +31,37 @@ public class HistoryEntry {
 		this.file = file;
 	}
 	
-	public HistoryEntry(File file, int inFilePosition ){
+	public HistoryEntry(File file, int cursorPosition ){
 		this.file = file;
-		this.inFilePosition = inFilePosition;
+		this.cursorPosition = cursorPosition;
 	}
 	
-	
 	/**
-	 * 
-	 * @return
+	 * @return the file
 	 */
 	public File getFile() {
 		return file;
 	}
-	
+
 	/**
-	 * 
-	 * @return
+	 * @param file the file to set
 	 */
-	public int getInFilePosition() {
-		return inFilePosition;
+	public void setFile(File file) {
+		this.file = file;
+	}
+
+	/**
+	 * @return the cursorPosition
+	 */
+	public int getCursorPosition() {
+		return cursorPosition;
+	}
+
+	/**
+	 * @param cursorPosition the cursorPosition to set
+	 */
+	public void setCursorPosition(int cursorPosition) {
+		this.cursorPosition = cursorPosition;
 	}
 
 	

@@ -21,7 +21,6 @@ public class SimpleNavigator extends AbstractNavigator implements NavigatorInter
 	private Button afterButton;
 	private Button graphicModeButton;
 
-	private HistoryManager historyManager = HistoryManager.getInstance();
 
 	private SimpleNavigator(Composite composite){
 		super(composite);

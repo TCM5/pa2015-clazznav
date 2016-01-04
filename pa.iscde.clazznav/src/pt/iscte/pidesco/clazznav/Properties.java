@@ -15,12 +15,9 @@ public class Properties {
 
 	private Properties(){}
 
-	// App configuration
-	private boolean DEBUG_MODE = false;
-	
 	//Extension points
 	public final String IEVENT_POINT_ID = "pa.iscde.clazznav.event";
-
+	
 
 }
 

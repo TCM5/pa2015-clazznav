@@ -1,28 +1,39 @@
 package pt.iscte.pidesco.clazznav.ui;
 
-import java.io.File;
-import java.util.ArrayList;
-
 import org.eclipse.swt.widgets.Composite;
 
+import pt.iscte.pidesco.clazznav.core.HistoryManager;
+/**
+ * 
+ * @author santostc
+ *
+ */
 public class AbstractNavigator {
-	
+
+	/**
+	 * 
+	 */
+	protected HistoryManager historyManager = HistoryManager.getInstance();
+
+	/**
+	 * 
+	 */
 	private Composite composite;
-	public static ArrayList<File> files = new ArrayList<File>();
 	
+	/**
+	 * 
+	 * @param composite
+	 */
 	public AbstractNavigator(Composite composite) {
 		this.composite = composite;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public Composite getComposite() {
 		return composite;
 	}
-	
-	public void addFile(File file){
-		files.add(file);
-	}
-		
-	public void removeFile(File file){
-		files.remove(file);
-	}
+
 }

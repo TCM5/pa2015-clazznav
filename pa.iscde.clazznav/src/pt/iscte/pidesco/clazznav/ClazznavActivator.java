@@ -4,12 +4,8 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
-import pt.iscte.pidesco.clazznav.core.DefaultHistoryNavigation;
 import pt.iscte.pidesco.clazznav.core.ExtensionManager;
-import pt.iscte.pidesco.clazznav.core.HistoryManager;
 import pt.iscte.pidesco.clazznav.core.JavaEditorListenerImpl;
-import pt.iscte.pidesco.clazznav.utils.RegisteredExtensions;
-import pt.iscte.pidesco.clazznav.utils.ServiceLogger;
 import pt.iscte.pidesco.javaeditor.service.JavaEditorServices;
 /**
  * 
@@ -22,11 +18,6 @@ public class ClazznavActivator implements BundleActivator {
 	 * 
 	 */
 	private static ClazznavActivator instance;
-
-	/**
-	 * 
-	 */
-	private ServiceLogger log = new ServiceLogger();
 
 	/**
 	 * 
@@ -46,7 +37,7 @@ public class ClazznavActivator implements BundleActivator {
 	/**
 	 * 
 	 */
-	public static JavaEditorListenerImpl listener;
+	public static JavaEditorListenerImpl javaEditorListener;
 
 	/**
 	 * 
@@ -64,17 +55,15 @@ public class ClazznavActivator implements BundleActivator {
 	public void start(final BundleContext bundleContext) throws Exception {
 		instance = this;
 
-		log.log(0, "Starting bundle" );
-
 		javaEditorReference = bundleContext.getServiceReference( JavaEditorServices.class );
-		log.log(javaEditorReference, 0, "Starting...");
 		javaEditorService = bundleContext.getService( javaEditorReference );
 
-		listener = new JavaEditorListenerImpl();
-		javaEditorService.addListener(listener);
+		javaEditorListener = new JavaEditorListenerImpl();
+		javaEditorService.addListener( javaEditorListener );
 		
-		ExtensionManager extManager = new ExtensionManager();
-		extManager.integrateExtensions();
+		//Apply contributed extensions
+		ExtensionManager extensionManager = new ExtensionManager();
+		extensionManager.integrateExtensions();
 
 	}
 
@@ -87,6 +76,7 @@ public class ClazznavActivator implements BundleActivator {
 		bundleContext.ungetService(javaEditorReference);
 	}
 
+	
 	/**
 	 * 
 	 * @return The context of the bundle

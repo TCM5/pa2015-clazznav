@@ -79,7 +79,7 @@ public class GraphicNavigator extends AbstractNavigator implements NavigatorInte
 				source = (CustomNode) graph.getNodes().get(graph.getNodes().size() -1 );
 		}
 
-		CustomNode dest = new CustomNode( graph , files.get(files.size() - 1) );
+		CustomNode dest = new CustomNode( graph , historyManager.getNavigatedFiles().get(historyManager.getNavigatedFiles().size() - 1).getFile());
 		nodes.add( dest );
 
 		if ( nodes.size() >= 2) {
