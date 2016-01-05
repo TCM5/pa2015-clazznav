@@ -8,27 +8,28 @@ import pt.iscte.pidesco.clazznav.core.ExtensionManager;
 import pt.iscte.pidesco.clazznav.core.JavaEditorListenerImpl;
 import pt.iscte.pidesco.javaeditor.service.JavaEditorServices;
 /**
+ * ClazznavActivator Object
+ * 
+ * <p>This class consists on definition of the activator for ClazzNav Plugin. 
+ * All the the services from dependent plugin are invoked here, and their services implementation
  * 
  * @author tiagocms
- * 
+ * @verrsion 1.0
  */
+
 public class ClazznavActivator implements BundleActivator {
 
 	/**
-	 * 
+	 * The unique instance of ClazznavActivator
 	 */
 	private static ClazznavActivator instance;
 
-	/**
-	 * 
-	 */
-	private static BundleContext context;
 
 	/**
 	 * 
 	 */
 	public ServiceReference<JavaEditorServices> javaEditorReference;
-	
+
 	/**
 	 * 
 	 */
@@ -37,17 +38,18 @@ public class ClazznavActivator implements BundleActivator {
 	/**
 	 * 
 	 */
-	public static JavaEditorListenerImpl javaEditorListener;
+	public JavaEditorListenerImpl javaEditorListener;
 
 	/**
+	 * TODO
 	 * 
-	 * @return
+	 * @return	unique instance of the ClazznavActivator.
+	 * @see 	ClazznavActivator
 	 */
 	public static ClazznavActivator getInstance(){
 		return instance == null ? new ClazznavActivator() : instance;
 	}
 
-	
 	/*
 	 * (non-Javadoc)
 	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
@@ -60,11 +62,10 @@ public class ClazznavActivator implements BundleActivator {
 
 		javaEditorListener = new JavaEditorListenerImpl();
 		javaEditorService.addListener( javaEditorListener );
-		
+
 		//Apply contributed extensions
 		ExtensionManager extensionManager = new ExtensionManager();
 		extensionManager.integrateExtensions();
-
 	}
 
 	/*
@@ -72,17 +73,7 @@ public class ClazznavActivator implements BundleActivator {
 	 * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
 	 */
 	public void stop(BundleContext bundleContext) throws Exception {
-		ClazznavActivator.context = null;
 		bundleContext.ungetService(javaEditorReference);
-	}
-
-	
-	/**
-	 * 
-	 * @return The context of the bundle
-	 */
-	static BundleContext getContext() {
-		return context;
 	}
 
 }
