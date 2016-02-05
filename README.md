@@ -1,3 +1,5 @@
+# <p style='color:red'>DEPRECATED :( (05/02/2015).</p> 
+
  <img src="https://github.com/TiagoCMS/pa2015-clazznav/blob/master/pa.iscde.clazznav/images/navigator_icon.png" width="150px">
 
 # Project
